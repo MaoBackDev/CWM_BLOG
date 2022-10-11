@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block header %}
 {% include 'includes/navbar.html' %}
 {% endblock header %}
@@ -30,12 +31,15 @@
             {% for comment in post_comments %}
             <div class="card mb-2">
                 <div class="card-body">
-                    
-                    {% if comment.user.profile.image %}
-                    <img src="{{}}" alt=""> 
-                    {% endif %}
+                    <div>
+                        {% if comment.user.profile.image %}
+                        <img src="{{comment.user.profile.image.url}}" class="img-thumbnail rounded-circle border border-danger" width="30" height="24"> 
                         
-                    <img src="{% static 'img/avatar.png' %}" alt="">
+                        {% else %}
+                        <img src="{% static 'img/avatar.png' %}" width="30" height="24"> 
+                        {% endif %}
+                        <span>@{{comment.user.username}}</span>
+                    </div>
                     <p>{{comment.content|safe}}</p>
                     <small class="text-muted">Publicado hace {{comment.timestamp|timesince}}</small> 
                 </div>

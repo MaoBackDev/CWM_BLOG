@@ -1,26 +1,15 @@
 {% extends 'base.html' %}
 {% block header %}
 
-{% include 'includes/navbar.html' %}
+{% include 'includes/navbar_simple.html' %}
 {% include 'includes/header.html' %}
 
 {% endblock header %}
 
 {% block content %}
 <div class="row mt-5">
-    <div class="col-lg-8">
-        <!-- Featured blog post-->
-        <div class="card mb-4">
-            <a href="{{post.get_absolute_url}}"><img class="card-img-top" src="{{front_page.image.url}}" alt="..." /></a>
-            <div class="card-body">
-                <div class="small text-muted">{{front_page.created|timesince}}</div>
-                <h2 class="card-title">{{front_page.title}}</h2>
-                <p class="card-text">{{front_page.content|safe|truncatechars:200}}</p>
-                <a class="btn btn-primary" href="{{post.get_absolute_url}}">Read more →</a>
-            </div>
-        </div>  <!--End  main post-->
-
-        <!-- Nested row for non-featured blog posts-->
+    <div class="col-lg-10 m-auto">
+        <!-- Row for  blog posts-->
         <div class="row">
             {% for post in posts %}
             <div class="col-lg-6">
@@ -37,40 +26,33 @@
             {% endfor %}
         </div>  <!--End posts-->
       </div>
-    <!-- Side widgets-->
-    <div class="col-lg-4">
-        <!-- Search widget-->
-        <div class="card mb-4">
-            <div class="card-header">Search</div>
-            <div class="card-body">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                    <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+      <div class="card col-lg-10 m-auto border-info mb-5 mt-5 p-3">
+        <h2 class="card-text text-center">Contácto</h2>
+        <form action="" method="post">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="input-group mb-3 mt5">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input type="text" name="name" placeholder="Nombre Completo" class="form-control">
+                    </div>
+                    <div class="input-group mb-3 mt5">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input type="email" name="email" placeholder="Correo Electrónico" class="form-control">
+                    </div>
+                    <div class="input-group mb-3 mt5">
+                        <textarea name="msg" id="" rows="8" placeholder="Mensaje" class="form-control"></textarea>
+                    </div>
+                    <div class="d-grid gap-2 mt-3">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fas fa-plus"></i>
+                            &nbsp;&nbsp; Enviar
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Categories widget-->
-        <div class="card mb-4">
-          <div class="card-header">Temas</div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-6">
-                <ul class="list-unstyled mb-0">
-                  <li><a href="#!">Web Design</a></li>
-                  <li><a href="#!">HTML</a></li>
-                  <li><a href="#!">Freebies</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Side widget-->
-        <div class="card mb-4">
-            <div class="card-header">Side Widget</div>
-            <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-        </div>
-    </div>
+        </form>
+        
+      </div>
 </div>
 
 {% endblock content %}

@@ -12,8 +12,8 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['posts'] = Post.objects.posts_to_home()
-        context['front_page'] = Post.objects.post_to_frontpage()
         return context
+
 
 
 class BlogView(ListView):
@@ -24,7 +24,6 @@ class BlogView(ListView):
     def get_context_data(self, **kwargs):
         context = super(BlogView, self).get_context_data(**kwargs)
         context['topics'] = Topic.objects.all()
-        context['front_page'] = Post.objects.post_to_frontpage()
         return context
     
     def get_queryset(self):
