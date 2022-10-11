@@ -1,0 +1,52 @@
+{% extends 'base.html' %} 
+{% block header %}
+{% include 'includes/navbar.html'%}
+{% endblock header %} 
+
+{% block content %}
+<div class="card mt-5 col-lg-6 m-auto">
+    <div class="card-header">
+        <h4 class="card-title">Register</h4>
+    </div>
+    <div class="card-body">
+        <form method="post">
+
+            <!-- Si existen errores en el formulario los mostramos al usuario -->
+            {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                <div id="emailHelp" class="form-text text-danger">{{error}}</div>
+                {% endfor %}
+            {% endfor %}
+            {% endif %}
+           
+            {% csrf_token %} 
+            <div class="mb-3">
+              <label for="id_username" class="form-label">{{form.username.label_tag}}</label>
+              <input type="text" name="username" class="form-control" id="id_username" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="id_email" class="form-label">{{form.email.label_tag}}</label>
+                <input type="email" class="form-control" name="email" maxlength="200" required="" id="id_email">
+            </div>
+            <div class="mb-3">
+                <label for="id_first_name" class="form-label">{{form.first_name.label_tag}}</label>
+                <input type="text" class="form-control" name="first_name" maxlength="200" required="" id="id_first_name">
+            </div>
+            <div class="mb-3">
+                <label for="id_last_name" class="form-label">{{form.last_name.label_tag}}</label>
+                <input type="text" class="form-control" name="last_name" maxlength="200" required="" id="id_last_name">
+            </div>
+            <div class="mb-3">
+                <label for="id_password1" class="form-label">{{form.password1.label_tag}}</label>
+                <input type="password" class="form-control" name="password1" maxlength="200" required="" id="id_password1">
+            </div>
+            <div class="mb-3">
+                <label for="id_password2" class="form-label">{{form.password2.label_tag}}</label>
+                <input type="password" class="form-control" name="password2" maxlength="200" required="" id="id_password2">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
